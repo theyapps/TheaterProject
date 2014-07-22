@@ -1,0 +1,60 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="./template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        <c:choose>
+
+            <c:when test="#{empty theaterController.theaterById}">
+                Error
+            </c:when>
+            
+            <c:otherwise>
+                #{theaterController.theaterById.name}
+            </c:otherwise>
+            
+        </c:choose>
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <c:choose>
+
+            <c:when test="#{empty theaterController.theaterById}">
+                No theater found
+            </c:when>
+            
+            <c:otherwise>
+                <h:outputText value="#{theaterController.theaterById.addr}" />
+                
+                <h:dataTable value="#{theaterController.theater.showtimes}" 
+                             var="s"  
+                             border="1">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="ID"/>
+                        </f:facet>
+                        <h:outputText value="#{s.id}"/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Time"/>
+                        </f:facet>
+                        <h:outputText value="#{s.time}">
+                            <f:convertDateTime pattern="HH:mm" />
+                        </h:outputText>
+                    </h:column>
+                    
+                </h:dataTable>
+                
+            </c:otherwise>
+            
+        </c:choose>
+    </ui:define>
+
+</ui:composition>

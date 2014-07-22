@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="template.xhtml" >
+
+    <ui:define name="title">
+        Theater List
+    </ui:define>
+
+    <ui:define name="content">
+        <c:choose>
+            
+            <c:when test="#{empty theaterController.theaterList}">
+                <h:panelGroup layout="block" class="notice">
+                    There are no theaters in the database that meet the set conditions.
+                </h:panelGroup>
+            </c:when>
+            
+            <c:otherwise>
+                
+                <h:dataTable value="#{theaterController.theaterList}" 
+                             var="t"  
+                             border="1">
+                                     
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <a href="theater_view.xhtml?id=#{t.id}">
+                            <h:outputText value="#{t.name}"/>
+                        </a>
+                        
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Address"/>
+                        </f:facet>
+                        <h:outputText value="#{t.addr}"/>
+                    </h:column>
+                    
+                </h:dataTable>
+                
+            </c:otherwise>
+            
+        </c:choose>
+
+        <h:link value="New Theater" outcome="theater_new" />
+    </ui:define>
+
+</ui:composition>
