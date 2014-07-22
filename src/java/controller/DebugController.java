@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package controller;
 
 import ejb.MovieEJB;
@@ -28,6 +22,9 @@ public class DebugController {
     @EJB private MovieEJB movieEJB;
     @EJB private ShowtimeEJB showtimeEJB;
     
+    /**
+     *  Clears all entries from the database.
+     */
     public void clearDB(){
         theaterEJB.clear();
         movieEJB.clear();
