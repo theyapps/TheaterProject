@@ -27,7 +27,7 @@ import javax.persistence.Temporal;
     @NamedQuery(name = "Showtime.findAll",
             query = "SELECT s FROM Showtime s"),
     @NamedQuery(name = "Showtime.findById",
-            query = "SELECT s FROM Showtime s WHERE s.id = :id"),
+            query = "SELECT s FROM Showtime s WHERE s.id = :id")
 })
 public class Showtime implements Serializable {
     private static final long serialVersionUID = 1L;

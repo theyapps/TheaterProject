@@ -119,7 +119,7 @@ public class Theater implements Serializable {
             showtime.setTheater(this);
         }
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
