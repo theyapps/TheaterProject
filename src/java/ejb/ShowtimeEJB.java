@@ -38,20 +38,6 @@ public class ShowtimeEJB {
         }
         return query.getSingleResult();
     }
-    
-    public List<Showtime> getAllByTheaterId(long theaterId) {
-        TypedQuery<Showtime> query = entityManager.createNamedQuery("Showtime.findAllByTheaterId", Showtime.class);
-        query.setParameter("id", theaterId);
-        
-        return query.getResultList(); 
-    }
-    
-    public List<Showtime> getAllByMovieId(long movieId) {
-        TypedQuery<Showtime> query = entityManager.createNamedQuery("Showtime.findAllByMovieId", Showtime.class);
-        query.setParameter("id", movieId);
-        
-        return query.getResultList(); 
-    }
 
     public Showtime add(Showtime showtime) {
         entityManager.persist(showtime);
