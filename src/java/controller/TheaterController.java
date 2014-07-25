@@ -6,6 +6,7 @@
 package controller;
 
 import ejb.TheaterEJB;
+import entity.Showtime;
 import entity.Theater;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,19 @@ public class TheaterController {
         return null;
     }
 
+    public List<Showtime> getShowtimesByTheaterId() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
+        Long id;
+        
+        if(paramMap.get("id") != null){
+            id = Long.valueOf(paramMap.get("id"));
+            return theaterEJB.getShowtimesByTheaterId(id);
+        }
+                
+        return null;
+    }
+    
     public void setTheaterList(List<Theater> theaterList) {
         this.theaterList = theaterList;
     }

@@ -29,7 +29,10 @@ import javax.validation.constraints.Pattern;
     @NamedQuery(name="Theater.findByZip",
                 query="SELECT t FROM Theater t WHERE t.addrZip = :addrzip"),
     @NamedQuery(name="Theater.findById",
-                query="SELECT t FROM Theater t WHERE t.id = :id")
+                query="SELECT t FROM Theater t WHERE t.id = :id"),
+    @NamedQuery(name="Theater.getShowtimesByTheaterId",
+                query="SELECT s FROM Theater t join t.showtimes s where "
+                        + "t.id = :id")
 }) 
 public class Theater implements Serializable {
     private static final long serialVersionUID = 1L;

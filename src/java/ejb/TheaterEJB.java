@@ -6,6 +6,7 @@
 
 package ejb;
 
+import entity.Showtime;
 import entity.Theater;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -46,6 +47,21 @@ public class TheaterEJB {
         return query.getSingleResult();
     }
 
+        
+    public List<Showtime> getShowtimesByTheaterId(long id) {
+        TypedQuery<Showtime> query = entityManager.createNamedQuery("Theater.getShowtimesByTheaterId", Showtime.class);
+        query.setParameter("id", id);
+        
+        // Hack to prevent exception thrown when no result found
+        // by returning null instead of throwing the exception.
+        List<Showtime> list = query.getResultList();
+        if(list == null || list.isEmpty()){
+            return null;
+        }
+        
+        return query.getResultList();
+    }
+            
     public Theater add(Theater theater) {
         entityManager.persist(theater);
         return theater;
