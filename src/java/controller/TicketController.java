@@ -4,6 +4,7 @@
 
 package controller;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
@@ -14,5 +15,5 @@ import javax.inject.Named;
 @Named(value = "ticketController")
 @RequestScoped
 public class TicketController {
-    
+    @EJB TicketEJB ticketEJB;
 }

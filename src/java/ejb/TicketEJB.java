@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author ryan
  */
 @Stateless
-public class TicketBean {
+public class TicketEJB {
     @PersistenceContext(unitName = "TheaterProjectPU")
     private EntityManager em;
     
