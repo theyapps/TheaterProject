@@ -52,13 +52,6 @@ public class TheaterEJB {
         TypedQuery<Showtime> query = entityManager.createNamedQuery("Theater.getShowtimesByTheaterId", Showtime.class);
         query.setParameter("id", id);
         
-        // Hack to prevent exception thrown when no result found
-        // by returning null instead of throwing the exception.
-        List<Showtime> list = query.getResultList();
-        if(list == null || list.isEmpty()){
-            return null;
-        }
-        
         return query.getResultList();
     }
             
