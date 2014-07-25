@@ -28,9 +28,6 @@ public class Ticket implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="showtimeID")
     private Showtime showtime;
-    
-    @Pattern(regexp="^[0-9]{16}$")
-    private String creditCardNum;
 
     public Long getId() {
         return id;
@@ -46,14 +43,6 @@ public class Ticket implements Serializable {
 
     public void setShowtime(Showtime showtime) {
         this.showtime = showtime;
-    }
-
-    public String getCreditCardNum() {
-        return creditCardNum;
-    }
-
-    public void setCreditCardNum(String creditCardNum) {
-        this.creditCardNum = creditCardNum;
     }
 
     @Override
