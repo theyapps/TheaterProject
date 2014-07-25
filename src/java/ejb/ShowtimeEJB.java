@@ -20,15 +20,15 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ShowtimeEJB {
     @PersistenceContext(unitName = "TheaterProjectPU")
-    private EntityManager entityManager;
+    private EntityManager em;
 
     public List<Showtime> getAll() {
-        TypedQuery<Showtime> query = entityManager.createNamedQuery("Showtime.findAll", Showtime.class);
+        TypedQuery<Showtime> query = em.createNamedQuery("Showtime.findAll", Showtime.class);
         return query.getResultList();
     }
     
     public Showtime get(long id) {
-        TypedQuery<Showtime> query = entityManager.createNamedQuery("Showtime.findById", Showtime.class);
+        TypedQuery<Showtime> query = em.createNamedQuery("Showtime.findById", Showtime.class);
         query.setParameter("id", id);
         
         // Hack to prevent exception thrown when no result found
@@ -40,12 +40,12 @@ public class ShowtimeEJB {
     }
 
     public Showtime add(Showtime showtime) {
-        entityManager.persist(showtime);
+        em.persist(showtime);
         return showtime;
     }
     
     public void clear(){
-        entityManager.createQuery("DELETE FROM Showtime s").executeUpdate();
+        em.createQuery("DELETE FROM Showtime s").executeUpdate();
     }
     
 }

@@ -20,15 +20,15 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class MovieEJB {
     @PersistenceContext(unitName = "TheaterProjectPU")
-    private EntityManager entityManager;
+    private EntityManager em;
 
     public List<Movie> getAll() {
-        TypedQuery<Movie> query = entityManager.createNamedQuery("Movie.findAll", Movie.class);
+        TypedQuery<Movie> query = em.createNamedQuery("Movie.findAll", Movie.class);
         return query.getResultList();
     }
     
     public Movie get(long id) {
-        TypedQuery<Movie> query = entityManager.createNamedQuery("Movie.findById", Movie.class);
+        TypedQuery<Movie> query = em.createNamedQuery("Movie.findById", Movie.class);
         query.setParameter("id", id);
         
         // Hack to prevent exception thrown when no result found
@@ -40,12 +40,12 @@ public class MovieEJB {
     }
 
     public Movie add(Movie movie) {
-        entityManager.persist(movie);
+        em.persist(movie);
         return movie;
     }
     
     public void clear(){
-        entityManager.createQuery("DELETE FROM Movie m").executeUpdate();
+        em.createQuery("DELETE FROM Movie m").executeUpdate();
     }
     
 }
