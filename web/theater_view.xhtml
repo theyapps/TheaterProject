@@ -45,9 +45,11 @@
                         <f:facet name="header">
                             <h:outputText value="Time"/>
                         </f:facet>
-                        <h:outputText value="#{s.time}">
-                            <f:convertDateTime pattern="HH:mm" />
-                        </h:outputText>
+                        <a href="transaction_new.xhtml?id=#{s.id}">
+                            <h:outputText value="#{s.time}">
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                        </a>
                     </h:column>
                     
                 </h:dataTable>

@@ -22,7 +22,7 @@ public class CreditCard {
      * @param amt Amount to be charged.
      * @return true if success, false if failed
      */
-    public static boolean processTransaction(String cc, String exp, 
+    public static boolean processTransaction(String name, String cc, String exp, 
             String auth, Double amt){
         if(!cc.matches("^[0-9]{16}$")) return false;
         if(!exp.matches("^[0-9]{2}/[0-9]{2}$")) return false;

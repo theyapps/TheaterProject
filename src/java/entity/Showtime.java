@@ -6,6 +6,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
+import javax.persistence.Transient;
 
 /**
  *
@@ -76,6 +79,11 @@ public class Showtime implements Serializable {
     
     public Date getTime() {
         return showtime;
+    }
+    
+    public String getTimePretty(){
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm aa");
+        return formatter.format(showtime.getTime());
     }
 
     public void setTime(Date time) {

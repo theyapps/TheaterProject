@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="title">
+                Buy Ticket
+            </ui:define>
+
+            <ui:define name="content">
+                <c:when test="#{empty showtimeController.showtimeById}">
+
+                </c:when>
+                <c:otherwise>
+
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Movie" />
+                        <h:outputText value="#{showtimeController.showtimeById.movie.name}" />
+
+                        <h:outputLabel value="Theater" />
+                        <h:outputText value="#{showtimeController.showtimeById.theater.name}" />
+
+                        <h:outputLabel value="Showtime" />
+                        <h:outputText value="#{showtimeController.showtimeById.time}">
+                            <f:convertDateTime pattern="HH:mm" />
+                        </h:outputText>
+                    </h:panelGrid>
+                    
+                    <br />
+                    <h:outputText value="Please enter payment info:" />
+                    <br />
+
+                    <h:form>
+                        
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Name" />
+                            <h:inputText value="#{ticketController.ticket.name}"
+                                         required="true"
+                                         label="name"/>
+                            <h:outputLabel value="CC Number" />
+                            <h:inputText value="#{ticketController.cc}" 
+                                         required="true"
+                                         label="cc number"/>
+                            <h:outputLabel value="Exp Date (mm/yy)" />
+                            <h:inputText value="#{ticketController.exp}"
+                                         required="true"
+                                         label="exp date"/>
+                            <h:outputLabel value="Auth Code" />
+                            <h:inputText value="#{ticketController.auth}" 
+                                         required="true"
+                                         label="auth code"/>
+                        </h:panelGrid>
+                        <h:commandButton value="Submit" action="#{ticketController.addTicket()}" />
+                    </h:form>
+                </c:otherwise>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

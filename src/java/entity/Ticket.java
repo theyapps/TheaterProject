@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Pattern;
+import javax.persistence.Transient;
 
 /**
  *
@@ -25,6 +25,8 @@ public class Ticket implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    private String name;
+    
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="showtimeID")
     private Showtime showtime;
@@ -35,6 +37,14 @@ public class Ticket implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Showtime getShowtime() {

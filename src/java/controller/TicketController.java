@@ -6,6 +6,7 @@ package controller;
 
 import ejb.TicketEJB;
 import entity.Ticket;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -21,8 +22,8 @@ import mock.CreditCard;
 public class TicketController {
     @EJB private TicketEJB ticketEJB;
     
-    private Ticket ticket;
-    private List<Ticket> ticketList;
+    private Ticket ticket = new Ticket();
+    private List<Ticket> ticketList = new ArrayList<>();
     
     private String cc, exp, auth;
     private Double amt;
@@ -76,12 +77,12 @@ public class TicketController {
     }
     
     public String addTicket(){
-        if(CreditCard.processTransaction(cc, exp, auth, amt)){
+        if(CreditCard.processTransaction(ticket.getName(), cc, exp, auth, amt)){
             ticket = ticketEJB.add(ticket);
             return "transaction_success.xhtml";
         }
         else{
-            return "transaction_fail.xhtml";
+            return "transaction_failure.xhtml";
         }
     }
 }
