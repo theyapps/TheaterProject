@@ -1,4 +1,4 @@
 TheaterProject
 ==============
 
-TheaterProject for Advanced Java course.
+This was the semester project in my Advanced Java course.
